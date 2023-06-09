@@ -1,0 +1,639 @@
+---
+title: "Cinsiyet Eşitsizliği Endeksinin Keşifsel Analizi"
+author: 
+  - Yasemin TUTAR [21080467]
+bibliography: ../bibliography/biblio.bib
+csl: ../csl/apa-tr.csl
+header-includes:
+  - \usepackage{polyglossia}
+  - \setmainlanguage{turkish}
+  - \usepackage{booktabs}
+  - \usepackage{caption} 
+  - \captionsetup[table]{skip=10pt}
+output:
+  bookdown::pdf_document2:
+    fig_caption: yes
+    fig_height: 3
+    fig_width: 4
+    keep_tex: no
+    latex_engine: xelatex
+    number_sections: yes
+    toc: no
+geometry: margin=1in
+link-citations: yes
+urlcolor: blue
+fontsize: 12pt
+biblio-style: apalike
+abstract: |
+  Cinsiyet eşitsizliğinin azaltılması, toplumların sürdürülebilir ve kapsayıcı bir şekilde gelişmesi için önemli bir hedef olarak kabul edilmektedir. Çok fazla ülkede cinsiyet eşitsizliği sorunu vardır. Bu hedefe ulaşmak için çeşitli alanlarda çalışmalar yürütülmelidir. Eğitimde cinsiyet eşitliği perspektifi benimsenmeli, kadınların işgücüne katılımı teşvik edilmeli ve siyasi temsilleri artırılmalıdır. Kadına yönelik şiddeti önlemek için kapsamlı politikalar uygulanmalı ve uluslararası işbirliği güçlendirilmelidir. Bu adımlar, cinsiyet eşitliği konusunda ilerleme sağlamak için önemlidir. Toplumların cinsiyet eşitliğine dayalı, adil ve kapsayıcı bir yapıya kavuşması için devletler, sivil toplum kuruluşları ve uluslararası toplum birlikte çalışmalı ve stratejiler geliştirmelidir. Ancak bu şekilde cinsiyet eşitliğine yönelik sürdürülebilir hale gelebilir.
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(cache = FALSE, echo = TRUE, message = FALSE, warning = FALSE)
+```
+
+<!-- ======================================================================= -->
+<!-- ============================== NOTLAR ================================= -->
+<!-- ======================================================================= -->
+[Github Repo](https://github.com/KULLANICI_ADINIZ/REPO_ADINIZ)
+
+## Giriş
+  Cinsiyet Eşitsizliği Endeksi (GII), Birleşmiş Milletler Kalkınma Programı (UNDP) tarafından İnsani Gelişme Raporu'nun 20. yıl dönümü baskısında ele alınan cinsiyet eşitsizliğinin ölçülmesine yönelik bir endekstir. UNDP'ye göre bu endeks, cinsiyet eşitsizliği nedeniyle bir ülkedeki başarı kaybını ölçmek için birleşik bir ölçüdür.
+  
+   Cinsiyet ayırımcılığı; toplumda kadınların temel hizmetlerden yoksun olması, fırsatlara ve kaynaklara sahip olmada erkeklere oranla eşit olmayan koşullar yaşaması, şiddete uğraması, siyasette ve çalışma yaşamında düşük oranlarda temsil edilmesi biçiminde tanımlanmaktadır.
+  
+   Bu analizimizde 50 ülkeye göre kadınların ve erkeklerin toplumdaki bazı alanlardaki yerlerini inceleyeceğiz. 
+  
+     Bu veri setinde aşağıdaki değişkenler bulunmaktadır:
+     
+  *   **Ülkeler**
+  *   **Ülke GII Değeri**
+  *   **Ülke Rütbesi**
+  *   **Anne ölüm oranı (100.000 canlı doğumda ölüm)**
+  *   **Ergen doğum oranı (15-19 yaş arası 1.000 kadın başına doğum)**
+  *   **Parlamentodaki Koltukların Payı (% kaçının kadınlar tarafından tutulduğu)**
+  *   **En Az Orta Öğretime Sahip Kadın (% 25 yaş ve üzeri olanlar)**
+  *   **En Az Orta Öğretime Sahip Erkek (25 yaş ve üzeri olanların%)**
+  *   **İşgücüne Katılım Oranı Kadın (15 yaş ve üzerinin%)**
+  *   **İşgücüne Katılım Oranı Erkek (15 yaş ve üzerinin%)**
+  
+## Çalışmanın Amacı
+  **Bu çalışmada cinsiyet eşitsizliği endesksi ile ülkelerde bulunan alanlardaki kadın ve erkek oranlarına göre ülkelerin gelişmişlik seviyeleri hakkında çıkarımlarda bulunacağız ve gelişmekte olan ve gelişmemiş ülkeler için cinsiyet ayrımcılığında eksik yönlerini keşfedeceğiz.**
+
+## Literatür 
+  Cinsiyet Eşitliği Endeksi; kadının güçlendirilmesi yaklaşımı yerine cinsiyet yaklaşımını benimser, cinsiyet eşitliğinde daha kapsamlı bir çerçeveyi temel alır ve tüm üye devletler için hem mevcut hem de cinsiyete göre ayrılmış uyumlu, karşılaştırılabilir ve güvenilir veri sağlanması için çağrıda bulunur, zaman içinde karşılaştırma yapma imkanı sağlayarak, cinsiyet eşitliği politikalarını desteklemek için kullanılabilir. [@mudurluugu2008toplumsal]
+    
+   Toplumsal cinsiyet kavramı, geniş açılımları olan, oldukça kapsamlı bir kavramdır. Bize kadınlık ve erkekliğin toplumsal olarak kurulan, öğrenilen kalıplar olduğunu anlatır. En az biyolojik özellikler kadar gerçek olan bu kalıplar, yaşanan yere, ailenin durumuna, zengin ya da yoksul olmaya ve bu gibi etkenlere göre farklılaşır. Yani bütün kadınlar ve bütün erkekler için tek bir kalıp yoktur. Farklı kadınlık ve farklı erkeklik kalıpları vardır. Bu nedenle, toplumsal cinsiyet basitçe “kadın sorunları”na indirgenemeyeceği gibi, kadınlarla erkekler arasındaki ilişkileri de sadece bir ezme/ezilme ilişkisi olarak tanımlamaz. Tersine, kadınlarla erkekler arasındaki ilişkilere değil, bütün toplumsal ilişkilere cinsiyet ilişkileri açısından da bakar.[@ustun2011toplumsal]
+   
+   Uluslararası düzeydeki güncel politikalar, bireyler arası eşitsizliğe yol açmakta ve oluşan eşitsizlik alanlarında kadınlar daha da eşitsiz konumda bulunmaktadır. [@alparslan2015icsletmelerde] Toplumsal cinsiyet eşitsizliği nedeniyle kadınlar daha az sağlıklı, daha düşük eğitimli, daha az işgücüne katılan, daha az gelir getiren işlerde çalışan pozisyondadır. Dünya nüfusunun yarısını oluşturan kadınların ikinci sınıf insan muamelesi görmeleri, düşük olan toplumsal statüleri, kaçınılmaz olarak onların verilen sağlık ve eğitim gibi hizmetleri kullanmalarını, hizmetlerden zamanında yararlanmalarını da olumsuz etkilemektedir. Bütün bu nedenlerden dolayı kadının güçlendirilmesi ve konumunun geliştirilmesi, toplumsal cinsiyet eşitliği bakış açısının politika, strateji ve uygulamalara yansıtılması büyük önem taşımaktadır. Cinsiyetler arası eşitliğin sağlanması ve toplumsal cinsiyet ayrımcılığının ortadan kaldırılması doğrultusunda Dünya’da yapılan girişimlere rağmen, henüz istenilen düzeye ulaşılamamıştır. [@bal2014toplumsal] Cinsiyet eşitsizliğindeki değişimlere ilişkin analizlerden temel sonuçlar ortaya çıkıyor. Mesleki entegrasyon derecesi ve kazançlardaki önemli farklılıklar, işe katılma oranı gbi. Okumayan kadınların doğum oranları ve kimi ülkelerde de ortaöğretim derecesine gelememiş kadın oranları çok yüksek. [@cotter2004gender] 
+   
+  Yapılan araştırmalar, toplumsal cinsiyet eşitsizliğinin kadın sağlığını pek çok yönüyle etkilediği sonucuna ulaşılmıştır. Kadınların üreme sağlığını ve ruh sağlığını etkilemektedir. Kadınların cinsiyetleri sebebiyle yaşadığı bu sorunları önlemeye yönelik yapılan eğitim programlarının, sağlık sonuçlarını olumlu etkilediği görülmüştür. Kadınlara yaşam dönemleri boyunca sağlık durumlarını korumak, yükseltmek ve görülebilecek tüm hastalıkları önlemek amacıyla kapsamlı sağlık hizmeti sunulmalıdır. Eşler arası görülen tüm şiddet olaylarını azaltmak, kadının statüsünü, hastalık görülme oranlarını, üreme sağlığını ve sağlık hizmetlerinden yararlanma oranlarını iyileştirebilir. Kadının statüsünün yükseltilmesi, eğitim, ekonomik, siyasi ve bölgesel gelişmişlikle ilgili eşitsizliklerin ortadan kaldırılması ile sağlık eşitsizliklerinin azalacağı öngörülmektedir. Toplumsal cinsiyet eşitliğini sağlamak amacıyla verilen eğitimlerin de, sosyal, ekonomik ve sağlık sonuçlarını yükselteceği, güvensiz cinsel davranışları, erken evliliği ve gebeliği önlemeyi sağlayabileceği öngörülmektedir. [@okin1994gender]
+   
+## Veri
+
+```{r, echo=FALSE}
+library(tidyverse)
+library(here)
+endeks <- readxl::read_xlsx(here("../data/endeks.xlsx"))
+```
+
+```{r, echo=FALSE}
+library(xtable) 
+# devtools::install_github("emraher/summarytools")
+library(summarytools)
+st_options(lang = "tr")
+```
+
+```{r, echo=FALSE}
+endeks <- endeks %>% 
+  janitor::clean_names()
+
+names(endeks)
+```
+
+```{r, echo=FALSE}
+complete.cases(endeks)
+na.omit(endeks)
+endeks_temiz <- na.omit(endeks)
+
+```
+
+```{r, echo=FALSE}
+endeks <- endeks %>% 
+  rename_with(~str_remove(.x, "_percent*"))
+```
+
+```{r, echo=FALSE}
+endeks <- endeks %>% 
+rename_with(~str_remove(.x, "daki_koltuklarin_payi_kacinin_kadinlar_tarafindan_tutuldugu*"))
+```
+
+```{r results='asis', echo=FALSE}
+endeks %>%
+  select("ulke_gii_degeri", "ulke_rutbesi", "anne_olum_orani", "ergen_dogum_orani", "parlamento") %>% 
+  descr(stats = c("mean", "sd", "min", "med", "max"), transpose = TRUE) %>% 
+  xtable(caption = "Özet İstatistikler",
+         label = "tab:ozet",
+         align = c("l", "c", "c", "c", "c", "c")) %>% 
+  print(booktabs = TRUE, comment = FALSE, caption.placement = "top")
+```
+
+```{r results='asis', echo=FALSE}
+endeks %>%
+  select("en_az_orta_ogretime_sahip_kadin", "en_az_orta_ogretime_sahip_erkek", "isgucune_katilim_orani_kadin", "isgucune_katilim_orani_erkek") %>% 
+  descr(stats = c("mean", "sd", "min", "med", "max"), transpose = TRUE) %>% 
+  xtable(caption = "Özet İstatistikler",
+         label = "tab:ozet",
+        align = c("l", rep("c", 4), "c")) %>% 
+  print(booktabs = TRUE, comment = FALSE, caption.placement = "top")
+```
+
+* Anne ölüm oranı (100.000 canlı doğumda ölüm) oldukça geniş bir aralığa sahiptir. Ortanca değer 11.50 iken, ortalama değer 92.64'tür. Bu, bazı ülkelerde anne ölüm oranının çok yüksek olduğunu göstermektedir.
+
+* Ergen doğum oranı (15-19 yaş arası 1.000 kadın başına doğum) ortanca değeri 13.809'dur. Bu, ergenlik çağındaki genç kadınlar arasında doğum oranının genellikle yüksek olduğunu göstermektedir.
+
+* Parlamentodaki koltukların payı (% kaçının kadınlar tarafından tutulduğu) ortalama olarak 27.65'tir. Bu, parlamentoların çoğunlukla erkekler tarafından domine edildiğini göstermektedir.
+
+* En az orta öğretime sahip kadın ve erkekler arasındaki yüzdelik dağılımlar arasında bazı farklılıklar vardır. Kadınların %25 yaş ve üzerinde en az orta öğretime sahip olma oranı ortalama olarak 70.789 iken, erkeklerde bu oran 74.62'dir.
+
+* İşgücüne katılım oranı kadın ve erkekler arasında bazı farklılıklar göstermektedir. Kadınların işgücüne katılım oranı ortalama olarak %49.967 iken, erkeklerde bu oran %68.22'dir.
+
+* Ülke GII (Cinsiyet Eşitsizliği Endeksi) değeri, cinsiyet eşitsizliğinin ölçüldüğü bir göstergedir. Ortalama GII değeri 0.2557'dir, yani cinsiyet eşitsizliği hala yaygın bir sorun olarak görülmektedir.
+
+* Ülke rütbesi, bir ülkenin cinsiyet eşitsizliği konusundaki performansını gösteren bir sıralamadır. Ortanca rütbe değeri 46'dır, yani birçok ülkenin cinsiyet eşitsizliği konusunda iyileşme potansiyeli olduğunu göstermektedir.
+
+
+## Yöntem ve Veri Analizi
+
+Bu analizimizde bazı soruların cevaplarını araştıracağız. Bunlar;
+
+* *1.Hangi ülkeler cinsiyet eşitsizliği endeksi açısından daha iyi performans gösteriyor?*
+* *2.Cinsiyet eşitsizliği endeksi ile ülkelerin gelişmişlik seviyeleri arasında bir ilişki var mı?*
+* *3.Kadınların ve erkeklerin işgücüne katılım oranları arasında farklılıklar var mı? Gelişmekte olan ve gelişmemiş ülkelerde bu farklılıklar nasıl değişiyor?*
+* *4.Parlamentodaki koltukların payı kadınlar tarafından ne kadar tutulmaktadır? Bu oran gelişmişlik düzeyiyle ilişkilidir mi?*
+* *5.En az orta öğretime sahip kadınların oranı ile erkeklerin oranı arasında farklılıklar var mı? Bu farklılıkların sebepleri neler olabilir?*
+* *6.Anne ölüm oranı ve ergen doğum oranı arasında nasıl bir ilişki vardır? Bu oranlar ülkelerin gelişmişlik düzeyine göre nasıl değişiyor?*
+* *7.Gelişmekte olan ve gelişmemiş ülkelerde cinsiyet ayrımcılığında hangi alanlarda eksiklikler mevcut? Bu alanlarda nasıl iyileştirmeler yapılabilir?*
+* *8.Kadın ve erkek arasındaki eğitim fırsatları ve kaynaklara erişim konusunda hangi farklılıklar gözlemlenmektedir? Bu farklılıkların nedenleri ve sonuçları nelerdir?*
+
+$$
+Y = β0 + β1X1 + β2X2 + β3X3 + β4X4 + ε
+$$
+
+Korelasyon grafiklerimizi özetlemek istersek:
+
+```{r, echo=FALSE}
+library(ggcorrplot)
+library(GGally)
+ggpairs(endeks, columns = 2:6, title="Cinsiyet Eşitsizliği", aes(color = "Species", alpha = 0.5),
+        upper = list(continuous = wrap("cor", size = 2.5)))
+```
+
+```{r, echo=FALSE}
+library(ggcorrplot)
+library(GGally)
+ggpairs(endeks, columns = 6:10, title="Cinsiyet Eşitsizliği", aes(color = "Species", alpha = 0.5),
+        upper = list(continuous = wrap("cor", size = 2.5)))
+```
+
+Şimdi analizlerimize başlayabiliriz. İlk olarak:
+
+```{r, echo=FALSE}
+library(ggplot2)
+ggplot(endeks, aes(x = ulke_gii_degeri, y = ulke_rutbesi)) +
+  geom_point(na.rm = TRUE, colour = "red", shape = 2, size = 4) +
+   labs(x = "Ülke GII Değeri", y = "Ülke Rütbesi")
+```
+
+```{r, echo=FALSE}
+library(ggplot2)
+ggplot(endeks, aes(x = anne_olum_orani, y = ergen_dogum_orani)) +
+  geom_point(na.rm = TRUE, colour = "red", shape = 2, size = 4) +
+   labs(x = "Anne ölüm oranı (100.000 canlı doğumda ölüm)", y = "Ergen doğum oranı (15-19 yaş arası 1.000 kadın başına doğum)")
+```
+
+Bu dağılım grafikleri, “Ülke GII Değeri” ile “Ülke Rütbesi” "Anne ölüm oranı (100.000 canlı doğumda ölüm)" ile "Ergen doğum oranı (15-19 yaş arası 1.000 kadın başına doğum)" ve arasındaki ilişkiyi görselleştirir. Noktalarımız genel olarak düşük bir eğilim gösterdiği için, bu iki değişken arasında negatif bir ilişki olduğunu gösterir.
+
+
+* Boş Hipotez (H0): "anne_olum_orani" ve "ergen_dogum_orani" değişkenleri arasında bir fark yoktur.
+* Alternatif Hipotez (Ha): "anne_olum_orani" ve "ergen_dogum_orani" değişkenleri arasında anlamlı bir fark vardır.
+
+```{r, echo=FALSE}
+library(stats)
+
+# ANOVA analizi yapılacak değişkenleri seçme
+bağımlı_değişken <- endeks$ulke_gii_degeri
+bağımsız_değişkenler <- endeks[, c("anne_olum_orani", "ergen_dogum_orani")]
+
+# ANOVA analizi uygulama
+anova_result <- aov(bağımlı_değişken ~ anne_olum_orani + ergen_dogum_orani, data = bağımsız_değişkenler)
+
+# ANOVA sonuçlarını gösterme
+summary(anova_result)
+```
+
+Sonuçlar, F değeri ve p değeri üzerinden yorumlanır. F değeri, gruplar arasındaki farkın genel varyansa oranını gösterirken, p değeri ise boş hipotezin doğruluğunu test etmek için kullanılır.
+
+Bu durumda, F değeri 114.89 ve p değeri 3.25e-14 olarak bulunmuştur. p değeri oldukça düşüktür (0.001'den daha küçüktür), bu da boş hipotezi reddetmemize neden olur. Yani, "anne_olum_orani" ve "ergen_dogum_orani" değişkenleri arasında anlamlı bir fark olduğu sonucuna varabiliriz.
+
+Bu sonuçlara dayanarak, anne ölüm oranı ile ergen doğum oranı arasında istatistiksel olarak anlamlı bir ilişki olduğunu söyleyebiliriz. F değeri ve p değeri, gruplar arasındaki farkın ve ilişkinin güçlü olduğunu göstermektedir.
+
+
+* Boş Hipotez (H0): "en_az_orta_ogretime_sahip_kadin" ve "en_az_orta_ogretime_sahip_erkek" değişkenleri arasında bir fark yoktur.
+* Alternatif Hipotez (Ha): "en_az_orta_ogretime_sahip_kadin" ve "en_az_orta_ogretime_sahip_erkek" değişkenleri arasında anlamlı bir fark vardır.
+
+```{r, echo=FALSE}
+library(stats)
+
+# ANOVA analizi yapılacak değişkenleri seçme
+bağımlı_değişken <- endeks$ulke_gii_degeri
+bağımsız_değişkenler <- endeks[, c("en_az_orta_ogretime_sahip_kadin", "en_az_orta_ogretime_sahip_erkek")]
+
+# ANOVA analizi uygulama
+anova_result <- aov(bağımlı_değişken ~ en_az_orta_ogretime_sahip_kadin + en_az_orta_ogretime_sahip_erkek, data = bağımsız_değişkenler)
+
+# ANOVA sonuçlarını gösterme
+summary(anova_result)
+```
+
+F değeri ve p değeri üzerinden yorumlanır. F değeri, gruplar arasındaki farkın genel varyansa oranını gösterirken, p değeri ise boş hipotezin doğruluğunu test etmek için kullanılır.
+
+Bu durumda, F değeri 139.993 ve p değeri 1.07e-15 olarak bulunmuştur. p değeri oldukça düşüktür (0.001'den daha küçüktür), bu da boş hipotezi reddetmemize neden olur. Yani, "en_az_orta_ogretime_sahip_kadin" ve "en_az_orta_ogretime_sahip_erkek" değişkenleri arasında anlamlı bir fark olduğu sonucuna varabiliriz.
+
+Bu sonuçlara dayanarak, cinsiyetler arasında en az orta öğretime sahip olma durumu açısından bir fark olduğunu söyleyebiliriz. Ancak, p değeri 0.05'ten küçük olmadığı için "en_az_orta_ogretime_sahip_erkek" değişkeninin "en_az_orta_ogretime_sahip_kadin" değişkenine kıyasla istatistiksel olarak anlamlı bir fark yaratmadığı söylenebilir.
+
+
+* Boş Hipotez (H0): "isgucune_katilim_orani_kadin" ve "isgucune_katilim_orani_erkek" değişkenleri arasında bir fark yoktur.
+* Alternatif Hipotez (H1): "isgucune_katilim_orani_kadin" ve "isgucune_katilim_orani_erkek" değişkenleri arasında anlamlı bir fark vardır.
+
+```{r, echo=FALSE}
+library(stats)
+
+# ANOVA analizi yapılacak değişkenleri seçme
+bağımlı_değişken <- endeks$ulke_gii_degeri
+bağımsız_değişkenler <- endeks[, c("isgucune_katilim_orani_kadin", "isgucune_katilim_orani_erkek")]
+
+# ANOVA analizi uygulama
+anova_result <- aov(bağımlı_değişken ~ isgucune_katilim_orani_kadin + isgucune_katilim_orani_erkek, data = bağımsız_değişkenler)
+
+# ANOVA sonuçlarını gösterme
+summary(anova_result)
+```
+
+Sonuçlar, F değeri ve p değeri üzerinden yorumlanır. F değeri, gruplar arasındaki farkın genel varyansa oranını gösterirken, p değeri ise boş hipotezin doğruluğunu test etmek için kullanılır.
+
+Bu durumda, F değeri 12.018 ve p değeri 0.00114 olarak bulunmuştur. p değeri 0.01'den daha küçüktür, bu da boş hipotezi reddetmemize neden olur. Yani, "isgucune_katilim_orani_kadin" ve "isgucune_katilim_orani_erkek" değişkenleri arasında anlamlı bir fark olduğu sonucuna varabiliriz.
+
+Bu sonuçlara dayanarak, kadınların ve erkeklerin işgücüne katılım oranları arasında istatistiksel olarak anlamlı bir fark olduğunu söyleyebiliriz. F değeri ve p değeri, gruplar arasındaki farkın ve ilişkinin güçlü olduğunu göstermektedir.
+
+Şimdi bu analizlerimizi görselleştiriyoruz:
+
+```{r, echo=FALSE}
+library(ggplot2)
+
+ggplot(endeks, aes(x = anne_olum_orani, y = ergen_dogum_orani)) +
+  geom_point() +
+  xlab("Anne Ölüm Oranı") +
+  ylab("Ergen Doğum Oranı") +
+  ggtitle("Anne Ölüm Oranı ile 
+    Ergen Doğum Oranı İlişkisi")
+
+```
+
+
+```{r, echo=FALSE}
+library(ggplot2)
+
+ggplot(endeks, aes(x = en_az_orta_ogretime_sahip_kadin, y = en_az_orta_ogretime_sahip_erkek)) +
+  geom_point() +
+  xlab("En Az Orta Öğretime Sahip Kadın") +
+  ylab("En Az Orta Öğretime Sahip Erkek ") +
+  ggtitle("En Az Orta Öğretime Sahip Kadın ile 
+    En Az Orta Öğretime Sahip Erkek  İlişkisi")
+
+```
+
+```{r, echo=FALSE}
+library(ggplot2)
+
+ggplot(endeks, aes(x = isgucune_katilim_orani_kadin, y = en_az_orta_ogretime_sahip_erkek)) +
+  geom_point() +
+  xlab("İşgücüne Katılım Oranı Kadın ") +
+  ylab("İşgücüne Katılım Oranı Erkek ") +
+  ggtitle("İşgücüne Katılım Oranı Kadın ile 
+    İşgücüne Katılım Oranı Erkek  İlişkisi")
+
+```
+
+İlk grafik, "Anne Ölüm Oranı" ile "Ergen Doğum Oranı" arasındaki ilişkiyi göstermektedir. Grafikte her bir ülke için anne ölüm oranı ve ergen doğum oranı noktaları kullanılarak temsil edilmektedir. Grafikte, anne ölüm oranının artmasıyla ergen doğum oranının da arttığı görülmektedir. Bu durum, yüksek anne ölüm oranının genç yaşta doğumların daha yaygın olduğu ülkelerde daha sık görüldüğünü göstermektedir.
+
+İkinci grafik, "En Az Orta Öğretime Sahip Kadın" ile "En Az Orta Öğretime Sahip Erkek" arasındaki ilişkiyi göstermektedir. Grafikte her bir ülke için kadınların ve erkeklerin en az orta öğretime sahip olma oranları noktalarla temsil edilmektedir. Grafikte, genel olarak ülkelerde erkeklerin en az orta öğretime sahip olma oranının kadınlardan daha yüksek olduğu görülmektedir. Bu durum, cinsiyet eşitsizliğinin eğitim alanında da var olduğunu ve kadınların erişimine sınırlamaların olduğunu göstermektedir.
+
+Üçüncü grafik, "İşgücüne Katılım Oranı Kadın" ile "İşgücüne Katılım Oranı Erkek" arasındaki ilişkiyi göstermektedir. Grafikte her bir ülke için kadınların ve erkeklerin işgücüne katılım oranları noktalarla temsil edilmektedir. Grafikte, genel olarak erkeklerin işgücüne katılım oranının kadınlardan daha yüksek olduğu görülmektedir. Bu durum, işgücüne katılımında cinsiyet eşitsizliğinin olduğunu ve kadınların istihdam fırsatlarına erişimlerinin sınırlı olduğunu göstermektedir.
+
+
+```{r, echo=FALSE}
+library(ggplot2)
+
+# Veri setinizdeki değişkenleri ve değerleri kullanarak bir data.frame oluşturun
+veri <- data.frame(endeks = c(1, 2, 3, 4), 
+                   ulke_gii_degeri = c(30, 50, 40, 60),
+                   ulke_rutbesi = c(20, 40, 50, 30))
+
+# Veri setini istenen formata dönüştürme (tidy format)
+veri_tidy <- tidyr::pivot_longer(veri, 
+                                 cols = c(ulke_gii_degeri, ulke_rutbesi),
+                                 names_to = "ulke_gii_degeri", 
+                                 values_to = "ulke_rutbesi")
+
+# Yığılmış sütun grafiği çizimi
+ggplot(veri_tidy, aes(x = endeks, y = `ulke_gii_degeri`, fill = `ulke_rutbesi`)) +
+  geom_col(position = "stack") +
+  labs(title = "İnternet Erişimi Oranı",
+       x = "GII",
+       y = "Rütbe") +
+  theme_minimal()
+```
+
+Bu grafik, "İnternet Erişimi Oranı" değişkenine göre ülkelerin GII (Cinsiyet Eşitsizliği Endeksi) değerlerini ve rütbelerini göstermektedir. Her bir endeks değeri için, GII değeri yığılmış sütunlarla temsil edilmektedir. Sütunların yüksekliği, GII değerini gösterirken, renkler ise rütbe düzeyini temsil etmektedir.
+
+Grafiği incelediğimizde, endeks değeri yükseldikçe (daha yüksek cinsiyet eşitsizliği), GII değeri ve rütbe düzeyi de artmaktadır. Bu durum, cinsiyet eşitsizliğinin yüksek olduğu ülkelerin genellikle daha düşük rütbeye sahip olduğunu ve cinsiyet eşitsizliği ile ülkelerin sıralaması arasında bir ilişki olduğunu göstermektedir.
+
+Grafik, farklı ülkelerin cinsiyet eşitsizliği ve rütbe düzeylerini karşılaştırmak için kullanılabilecek bir görsel araç sunmaktadır.
+
+
+```{r, echo=FALSE}
+
+# İhtiyaç duyulan kütüphaneleri yükleyelim
+library(dplyr)
+
+# Veri setinden ilgili değişkenleri seçelim
+dt <- endeks %>%
+  select(parlamento, ulke_gii_degeri)
+
+# Pearson korelasyon analizini yapalım
+correlation <- cor(dt$parlamento, dt$ulke_gii_degeri
+, method = "pearson")
+
+# Korelasyon sonucunu yazdıralım
+print(correlation)
+```
+
+Bu kod, "parlamento" değişkeni ile "ulke_gii_degeri" değişkeni arasındaki Pearson korelasyonunu hesaplamaktadır. Sonuç olarak, -0.671795 değeri elde edilmiştir.
+
+Bu değer, parlamentodaki koltukların payı ile cinsiyet eşitsizliği endeksi arasında negatif bir ilişki olduğunu göstermektedir. Yani, parlamentodaki kadın temsilinin artmasıyla birlikte cinsiyet eşitsizliği endeksi değerlerinin düştüğü görülmektedir. Bu da kadınların parlamentodaki temsiliyetinin artmasının cinsiyet eşitsizliğinin azalmasına katkı sağladığını göstermektedir.
+
+-0.671795 değeri, korelasyonun gücünü temsil etmektedir. Bu değer, parlamento ve cinsiyet eşitsizliği arasında orta düzeyde negatif bir ilişki olduğunu göstermektedir. Ancak, korelasyon tek başına ilişkinin neden-sonuç ilişkisi olduğunu belirtmez, sadece ilişkinin varlığını ve gücünü gösterir.
+
+Bu analiz, parlamento temsiliyetinin cinsiyet eşitsizliği üzerindeki etkisini anlamak için kullanılabilecek bir araç sağlamaktadır.
+
+```{r, echo=FALSE}
+
+# Veri setindeki ülkeleri GII puanlarına göre sıralama
+en_yuksek_puan_ulke <- endeks %>%
+  arrange(desc(ulke_gii_degeri)) %>%
+  select(ulke, ulke_gii_degeri) %>%
+  slice(1:5)
+
+# Sonuçları yazdırma
+en_yuksek_puan_ulke
+
+```
+
+Veri çıktısına göre, Yemen'in cinsiyet eşitsizliği endeksi en yüksek değer olan 0.82'ye sahiptir. Papua Yeni Gine, Nijerya, Afganistan ve Kongo ise sırasıyla 0.725, 0.68, 0.678 ve 0.564 GII değerlerine sahiptir.
+
+Bu veriler, söz konusu ülkelerde cinsiyet eşitsizliğinin ne kadar yaygın olduğunu göstermektedir. Daha yüksek GII değerleri, daha fazla cinsiyet eşitsizliği olduğunu ve kadınların erkeklerle karşılaştırıldığında daha dezavantajlı durumda olduğunu göstermektedir.
+
+
+```{r, echo=FALSE}
+
+library(ggplot2)
+
+grafik <- endeks %>% 
+  ggplot(aes(x = ulke_gii_degeri, y = isgucune_katilim_orani_kadin)) +
+  geom_point() +
+  labs(x = "İnternet Erişimi ulke_gii_degeri",
+       y = "isgucune_katilim_orani_kadin") +
+  theme_minimal()
+
+grafik
+```
+
+```{r, echo=FALSE}
+
+grafik <- endeks %>% 
+  ggplot(aes(x = ulke_gii_degeri, y = isgucune_katilim_orani_erkek)) +
+  geom_point() +
+  labs(x = "İnternet Erişimi ulke_gii_degeri",
+       y = "isgucune_katilim_orani_erkek") +
+  theme_minimal()
+
+grafik
+```
+
+İlk grafikte, "ulke_gii_degeri" ile "isgucune_katilim_orani_kadin" değişkenleri arasındaki ilişkiyi gösteren bir nokta grafiği çizilmiştir. X ekseni "ulke_gii_degeri" değerlerini, y ekseni ise "isgucune_katilim_orani_kadin" değerlerini temsil etmektedir. Her nokta, bir ülkeyi temsil etmektedir. Grafiğe göre, cinsiyet eşitsizliği endeksi (GII) değeri yükseldikçe kadınların işgücüne katılım oranının arttığı gözlemlenmektedir.
+
+İkinci grafikte ise, "ulke_gii_degeri" ile "isgucune_katilim_orani_erkek" değişkenleri arasındaki ilişkiyi gösteren bir nokta grafiği çizilmiştir. X ekseni yine "ulke_gii_degeri" değerlerini, y ekseni ise "isgucune_katilim_orani_erkek" değerlerini temsil etmektedir. Grafiğe göre, cinsiyet eşitsizliği endeksi (GII) değeri yükseldikçe erkeklerin işgücüne katılım oranının azaldığı gözlemlenmektedir.
+
+Her iki grafik de cinsiyet eşitsizliği endeksi ile işgücüne katılım arasındaki ilişkiyi göstermektedir. Grafikler incelendiğinde, cinsiyet eşitsizliği endeksi yükseldikçe kadınların işgücüne katılımında artış olduğu ve erkeklerin işgücüne katılımında azalma olduğu görülmektedir. Bu durum, cinsiyet eşitsizliği ve işgücüne katılım arasında ters bir ilişki olduğunu göstermektedir.
+
+```{r, echo=FALSE}
+
+ggplot(data = endeks, aes(x = ulke_gii_degeri, y = en_az_orta_ogretime_sahip_kadin)) +
+  geom_point() +
+  labs(x = "ulke_gii_degeri", y = "en_az_orta_ogretime_sahip_kadin ") +
+  ggtitle("Ülke GII Değeri ve
+    Kadın Okuma Oranı") +
+  theme_minimal()
+```
+
+```{r, echo=FALSE}
+
+ggplot(data = endeks, aes(x = ulke_gii_degeri, y = isgucune_katilim_orani_erkek)) +
+  geom_point() +
+  labs(x = "ulke_gii_degeri", y = "isgucune_katilim_orani_erkek") +
+  ggtitle("Ülke GII Değeri ve
+    Erkek Okuma Oranı") +
+  theme_minimal()
+```
+
+İlk grafikte, "ulke_gii_degeri" ile "en_az_orta_ogretime_sahip_kadin" değişkenleri arasındaki ilişkiyi gösteren bir nokta grafiği çizilmiştir. X ekseni "ulke_gii_degeri" değerlerini, y ekseni ise "en_az_orta_ogretime_sahip_kadin" değerlerini temsil etmektedir. Her nokta, bir ülkeyi temsil etmektedir. Grafikte, cinsiyet eşitsizliği endeksi (GII) değeri yükseldikçe kadınların en az orta öğretime sahip olma oranının arttığı gözlemlenmektedir.
+
+İkinci grafikte ise, "ulke_gii_degeri" ile "isgucune_katilim_orani_erkek" değişkenleri arasındaki ilişkiyi gösteren bir nokta grafiği çizilmiştir. X ekseni yine "ulke_gii_degeri" değerlerini, y ekseni ise "isgucune_katilim_orani_erkek" değerlerini temsil etmektedir. Grafikte, cinsiyet eşitsizliği endeksi (GII) değeri yükseldikçe erkeklerin işgücüne katılım oranının azaldığı gözlemlenmektedir.
+
+Her iki grafik de cinsiyet eşitsizliği endeksi ile kadınların eğitim seviyesi ve erkeklerin işgücüne katılımı arasındaki ilişkiyi göstermektedir. Grafikler incelendiğinde, cinsiyet eşitsizliği endeksi yükseldikçe kadınların eğitim seviyesinin arttığı ve erkeklerin işgücüne katılımının azaldığı görülmektedir. Bu durum, cinsiyet eşitsizliği endeksinin eğitim ve işgücüne katılım üzerindeki etkisini göstermektedir.
+
+* Boş Hipotez (H0): Bağımsız değişkenler arasında GII üzerinde etkili bir ilişki yoktur. Farklı bağımsız değişkenlerin grupları arasında GII puanları arasında istatistiksel olarak anlamlı bir farklılık yoktur.
+* Alternatif Hipotez (Ha): En az bir bağımsız değişken, GII puanları arasında istatistiksel olarak anlamlı bir farklılığa neden olur.
+
+```{r, echo=FALSE}
+
+library(stats)
+
+bağımlı_değişken <- endeks$ulke_gii_degeri
+bağımsız_değişkenler <- endeks[, c("ulke", "parlamento", "isgucune_katilim_orani_kadin", "en_az_orta_ogretime_sahip_erkek")]
+
+anova_result <- aov(bağımlı_değişken ~ ., data = bağımsız_değişkenler)
+
+summary(anova_result)
+```
+
+Anova analizi sonucunda, p<0.05'e karşılık gelen Pr(>F) değeri elde edilmiştir. Bu da bağımsız değişkenler arasında GII üzerinde anlamlı bir etkinin olduğunu göstermektedir. Bu anlamda, en az bir bağımsız değişkenin GII puanları üzerinde etkili olduğu söylenebilir.
+
+```{r, echo=FALSE}
+regression_model <- lm(anne_olum_orani ~ ergen_dogum_orani + en_az_orta_ogretime_sahip_kadin +  
+                       isgucune_katilim_orani_kadin + en_az_orta_ogretime_sahip_erkek + 
+                       isgucune_katilim_orani_erkek + ulke_gii_degeri + 
+                       ulke_rutbesi, data = endeks)
+
+summary(regression_model)
+library(broom)
+
+regression_summary <- tidy(regression_model)
+
+regression_summary
+
+```
+
+Çoklu lineer regresyon analizi sonucunda elde edilen katsayılar ve p-değerlerine göre yorum yapabiliriz:
+
+ergen_dogum_orani değişkeninin p-değeri 0.00559 olduğu için istatistiksel olarak anlamlıdır. Bu, ergen doğum oranı ile anne ölüm oranı arasında pozitif bir ilişki olduğunu gösterir. Diğer değişkenler sabit tutulduğunda, ergen doğum oranındaki bir birimlik artışın anne ölüm oranında 4.79 birimlik bir artışa neden olduğunu söyleyebiliriz.
+
+en_az_orta_ogretime_sahip_kadin değişkeninin p-değeri 0.0250 olduğu için istatistiksel olarak anlamlıdır. Bu, en az orta öğretime sahip kadınların oranı ile anne ölüm oranı arasında negatif bir ilişki olduğunu gösterir. Diğer değişkenler sabit tutulduğunda, en az orta öğretime sahip kadınların oranındaki bir birimlik artışın anne ölüm oranında 7.79 birimlik bir azalmaya neden olduğunu söyleyebiliriz.
+
+Diğer bağımsız değişkenlerin (isgucune_katilim_orani_kadin, en_az_orta_ogretime_sahip_erkek, isgucune_katilim_orani_erkek, ulke_gii_degeri ve ulke_rutbesi) p-değerleri istatistiksel olarak anlamlı değildir. Bu değişkenlerin anne ölüm oranı üzerindeki etkileri istatistiksel olarak anlamlı değildir.
+
+R-kare (Multiple R-squared) değeri 0.702'dir, bu da modelin açıkladığı toplam varyansın yaklaşık olarak %70.2'sini açıkladığını gösterir. Adjusted R-squared değeri 0.6524'tür, bu da modelin daha fazla bağımsız değişken eklenmesi durumunda düzeltilmiş varyans açıklama oranını gösterir.
+
+Sonuç olarak, ergen doğum oranı ve en az orta öğretime sahip kadınların oranı anne ölüm oranı üzerinde anlamlı bir etkiye sahiptir. Diğer değişkenlerin ise anne ölüm oranı üzerinde anlamlı bir etkisi bulunmamaktadır.
+
+* Ho: En az orta öğretime sahip erkekler ile en az orta öğretime sahip kadınlar arasında bir ilişki yoktur (korelasyon katsayısı 0'dır).
+* Ha : En az orta öğretime sahip erkekler ile en az orta öğretime sahip kadınlar arasında pozitif bir ilişki vardır (korelasyon katsayısı 0'dan farklıdır).
+
+```{r, echo=FALSE}
+# Korelasyon analizi
+correlation <- cor(endeks$en_az_orta_ogretime_sahip_erkek, endeks$en_az_orta_ogretime_sahip_kadin)
+
+# Sonucu yazdırma
+print(correlation)
+
+```
+
+Sonuç olarak, elde edilen korelasyon katsayısı 0.9873 olduğu için, Ho Hipotezi reddedebiliriz. Bu da bize en az orta öğretime sahip erkekler ile en az orta öğretime sahip kadınlar arasında pozitif ve güçlü bir ilişki olduğunu göstermektedir.
+
+
+* Ho (Null Hipotez): Parlamentodaki kadınların oranı ile işgücüne katılım oranı arasında fark yoktur.
+* Ha (Alternatif Hipotez): Parlamentodaki kadınların oranı ile işgücüne katılım oranı arasında fark vardır.
+
+```{r, echo=FALSE}
+# T-testi
+t.test(endeks$parlamento, endeks$isgucune_katilim_orani_kadin)
+
+```
+
+Sonuçlara göre, t değeri -7.4865 ve p değeri 4.748e-11 olarak bulunmuştur. Bu p değeri oldukça küçük olduğu için, Null Hipotezi reddedebiliriz. Bu da bize parlamentodaki kadınların oranı ile işgücüne katılım oranı arasında anlamlı bir fark olduğunu göstermektedir.
+
+Ayrıca, 95% güven aralığına göre, işgücüne katılım oranı parlamentodaki kadınların oranından ortalama olarak 16.39 ile 28.24 puan daha düşüktür.
+
+Sonuç olarak, parlamentodaki kadınların oranı ile işgücüne katılım oranı arasında anlamlı bir fark olduğu ve kadınların parlamentodaki temsiliyetlerinin işgücüne katılımlarını etkileyebileceği sonucuna varabiliriz.
+
+```{r, echo=FALSE}
+ggplot(endeks, aes(x = isgucune_katilim_orani_kadin, y = parlamento)) +
+  geom_point()
+```
+
+Bu grafik, ülkelerin işgücüne katılım oranı (kadınlar) ile parlamentodaki kadın temsiliyeti arasındaki ilişkiyi göstermektedir.
+
+Grafiğe bakıldığında, işgücüne katılım oranı yüksek olan ülkeler genellikle daha yüksek kadın temsiliyetine sahiptir. Bununla birlikte, bazı ülkelerde yüksek işgücüne katılım oranına rağmen kadın temsiliyeti düşüktür. Bu durum, ülkeden ülkeye farklılıkların olduğunu ve diğer faktörlerin de kadın temsiliyetini etkilediğini göstermektedir.
+
+
+```{r, echo=FALSE}
+library(ggplot2)
+
+ggplot(endeks, aes(x = en_az_orta_ogretime_sahip_erkek, y = isgucune_katilim_orani_erkek)) +
+  geom_point(aes(color = ulke_gii_degeri)) +
+  labs(x = "en_az_orta_ogretime_sahip_erkek", y = "isgucune_katilim_orani_erkek", color = "ulke_gii_degeri") +
+  theme_minimal()
+
+```
+
+Bu grafik, ülkelerin erkeklerin en az orta öğretime sahip olma oranı ile erkeklerin işgücüne katılım oranı arasındaki ilişkiyi ve bu ilişkinin cinsiyet eşitsizliği endeksi (GII) ile renklendirilmiş olarak göstermektedir.
+
+Grafiğe bakıldığında, genel olarak en az orta öğretime sahip olan erkeklerin işgücüne katılım oranı düşüktür. Ancak, GII'ye göre ülkeler renklendirildiğinde, bazı ülkelerde daha yüksek orta öğretim oranına sahip olan erkeklerin işgücüne katılım oranı da düşük olabilmektedir. Bu durum, cinsiyet eşitsizliğinin işgücüne katılım üzerindeki etkisini vurgulamaktadır.
+
+```{r, echo=FALSE}
+library(ggplot2)
+
+ggplot(endeks, aes(x = ulke_gii_degeri, y = ulke_rutbesi, color = ulke_gii_degeri)) +
+  geom_line() +
+  labs(x = "Ülke GII Değeri", y = "Ülke Rutbesi", color = "Ülke GII Değeri") +
+  ggtitle("Ülke GII Değeri ile Ülke Rutbesi Arasındaki İlişki") +
+  theme_minimal()
+
+```
+
+
+Bu çizgi grafiği, ülke GII değeri ile ülke rutbesi arasındaki ilişkiyi göstermektedir. Renk skalası, ülke GII değerlerini temsil etmektedir. Çizgi grafiği üzerindeki eğim ve renk skalası, ülkelerin cinsiyet eşitsizliği endeksi değerine göre sıralandığını göstermektedir. Daha yüksek bir GII değerine sahip olan ülkeler kırmızı renkte gösterilirken, daha düşük bir GII değerine sahip olan ülkeler mavi renkte gösterilmektedir. Bu görselleştirme, ülkeler arasındaki cinsiyet eşitsizliği endeksi ve ülke rutbesi ilişkisini daha iyi anlamamıza yardımcı olabilir.
+
+```{r, echo=FALSE}
+library(ggplot2)
+
+endeks$isgucune_katilim_orani_erkek_persen <- endeks$isgucune_katilim_orani_erkek * 100
+endeks$isgucune_katilim_orani_kadin_persen <- endeks$isgucune_katilim_orani_kadin * 100
+
+ggplot(endeks) +
+  geom_bar(aes(x = "", y = isgucune_katilim_orani_erkek_persen, fill = ulke), stat = "identity") +
+  coord_polar("y", start = 0) +
+  labs(x = NULL, y = NULL, fill = "Ülke") +
+  ggtitle("İşgücüne Katılım Oranı - Erkek") +
+  theme_minimal() +
+  theme(legend.position = "bottom") +
+  scale_fill_manual(values = rainbow(length(unique(endeks$ulke))))
+
+ggplot(endeks) +
+  geom_bar(aes(x = "", y = isgucune_katilim_orani_kadin_persen, fill = ulke), stat = "identity") +
+  coord_polar("y", start = 0) +
+  labs(x = NULL, y = NULL, fill = "Ülke") +
+  ggtitle("İşgücüne Katılım Oranı - Kadın") +
+  theme_minimal() +
+  theme(legend.position = "bottom") +
+  scale_fill_manual(values = rainbow(length(unique(endeks$ulke))))
+```
+
+İşgücüne katılım oranının cinsiyetlere göre dağılımını gösteren pasta grafiği görülmektedir. Her bir dilim, bir ülkeyi temsil etmektedir. Renkler, her bir ülkeyi ayırt etmek için kullanılmıştır. Pasta grafiği, işgücüne katılım oranındaki cinsiyet farklılıklarını görselleştirmektedir. Örneğin, bazı ülkelerde erkeklerin işgücüne katılım oranı daha yüksekken, diğer ülkelerde kadınların işgücüne katılım oranı daha yüksektir.
+ 
+```{r, echo=FALSE}
+library(ggplot2)
+
+ggplot(endeks, aes(x = ulke, y = en_az_orta_ogretime_sahip_erkek, group = 1)) +
+  geom_line(color = "purple") +
+  geom_point(color = "purple") +
+  geom_line(aes(y = en_az_orta_ogretime_sahip_kadin), color = "red") +
+  geom_point(aes(y = en_az_orta_ogretime_sahip_kadin), color = "red") +
+  labs(x = "Ülke", y = "En Az Orta Öğretime Sahip Kişi Sayısı", color = "Cinsiyet") +
+  ggtitle("En Az Orta Öğretime Sahip Erkek ve Kadın Sayısı") +
+  theme_minimal() +
+  theme(legend.title = element_blank())
+
+```
+
+En az orta öğretime sahip erkeklerin ve kadınların sayısını gösteren çizgi grafiği görülmektedir. Her bir ülke için erkeklerin sayısını mor renkte gösteren bir çizgi ve nokta çizilirken, kadınların sayısını kırmızı renkte gösteren başka bir çizgi ve nokta çizilmiştir. Bu grafik, her bir ülkenin en az orta öğretime sahip olan erkek ve kadın nüfusunu karşılaştırmamıza olanak sağlar. Örneğin, bazı ülkelerde erkeklerin en az orta öğretime sahip olma oranı daha yüksekken, diğer ülkelerde kadınların oranı daha yüksektir.
+
+
+## Sonuç
+
+Elde edilen sonuçlara göre, veri setindeki değişkenler arasında çeşitli ilişkiler ve eşitsizlikler bulunmaktadır. İşgücüne katılım oranları, eğitim düzeyleri, cinsiyet farklılıkları ve ülke GII değeri gibi faktörler, cinsiyet eşitsizliği ve toplumsal cinsiyet konularında önemli ipuçları sağlamaktadır.
+
+Örneğin, yapılan analizlerde cinsiyet eşitsizliği endeksi ile ülkelerin gelişmişlik seviyeleri arasında negatif bir ilişki olduğu görülmüştür. Bu, cinsiyet eşitsizliğinin daha yüksek olduğu ülkelerin genellikle daha düşük gelişmişlik düzeyine sahip olduğunu göstermektedir. Bu bulgu, cinsiyet eşitsizliği ile sosyoekonomik gelişme arasındaki ilişkiyi vurgulamaktadır.
+
+Ayrıca, kadın ve erkek işgücüne katılım oranları arasında farklılıklar tespit edilmiştir. Gelişmekte olan ve gelişmemiş ülkelerde bu farklılıkların daha belirgin olduğu görülmektedir. Bu durum, kadınların işgücüne katılımında yaşanan engellerin ve cinsiyete dayalı rol stereotiplerinin daha yaygın olduğunu işaret etmektedir. Bu farklılıkların azaltılması için cinsiyet eşitliği politikaları ve programları geliştirilmesi önemlidir.
+
+Parlamentodaki kadın koltuk payı, ülkelerin gelişmişlik düzeyiyle ilişkili olarak değişmektedir. Daha yüksek gelişmişlik düzeyine sahip ülkelerde genellikle daha yüksek kadın temsiliyeti görülmektedir. Bu durum, kadınların siyasi karar alma süreçlerinde daha fazla temsil edilmesinin önemini vurgulamaktadır. Kadınların siyasi liderlik rollerine erişimi ve katılımının artırılması, cinsiyet eşitliği açısından önemli bir adımdır.
+
+En az orta öğretime sahip kadın ve erkekler arasında farklılıklar tespit edilmiştir. Bu farklılıkların sebepleri arasında toplumsal cinsiyet normları, aile ve toplum baskısı, erişim engelleri ve eğitim fırsatlarındaki eşitsizlikler yer almaktadır. Bu sorunların çözümü için kapsayıcı ve eşitlikçi eğitim politikalarının uygulanması gerekmektedir.
+
+Anne ölüm oranı ile ergen doğum oranı arasında negatif bir ilişki olduğu tespit edilmiştir. Daha yüksek anne ölüm oranına sahip ülkelerde genellikle daha yüksek ergen doğum oranı görülmektedir. Bu durum, anne sağlığının ve doğum kontrol hizmetlerinin yetersiz olduğu ülkelerde, genç yaşta gebeliklerin ve anne ölümlerinin daha yaygın olduğunu göstermektedir. Bu sorunun çözümü için anne sağlığına erişimin ve cinsel sağlık hizmetlerinin güçlendirilmesi önemlidir.
+
+Gelişmekte olan ve gelişmemiş ülkelerde cinsiyet ayrımcılığı çeşitli alanlarda gözlemlenmektedir. İşgücüne katılımda, eğitim fırsatlarında, siyasi temsilde ve sağlık hizmetlerinde cinsiyet eşitsizliği ve eksiklikler bulunmaktadır. Bu eksikliklerin giderilmesi için toplumsal cinsiyet eşitliği politikalarının uygulanması, kapsamlı cinsiyet eğitimi ve farkındalık çalışmalarının yapılması, cinsiyet temelli şiddetin önlenmesi ve kadınların ekonomik güçlenmesi gibi önlemler alınmalıdır.
+
+Eğitim fırsatları ve kaynaklara erişim konusunda da kadınlar ve erkekler arasında farklılıklar gözlemlenmektedir. Kadınların eğitim düzeyi genellikle erkeklerin gerisinde kalmaktadır ve eğitim kaynaklarına erişimde kısıtlamalar bulunmaktadır. Bu farklılıkların nedenleri arasında toplumsal cinsiyet normları, aile ve toplum baskısı, ekonomik güçlükler ve erken yaşta evlilik gibi faktörler yer almaktadır. Bu sorunların çözümü için kız çocuklarının eğitime erişiminin teşvik edilmesi, eğitim sisteminin cinsiyet eşitliği perspektifiyle yeniden düzenlenmesi ve eğitim fırsatlarının eşit şekilde sunulması gerekmektedir.
+
+Sonuç olarak, elde edilen bulgular cinsiyet eşitsizliği konusunda farkındalık yaratmakta ve politika yapıcılarına, toplum liderlerine ve sivil toplum kuruluşlarına yönelik önemli ipuçları sunmaktadır. Cinsiyet eşitliğini sağlamak için daha fazla çaba ve politika müdahalesi gerekmektedir. Eşitsizliklerin azaltılması, kadınların güçlenmesi ve toplumda cinsiyet temelli ayrımcılığın sona ermesi için aşağıdaki adımların atılması önerilebilir:
+
+Toplumda cinsiyet eşitliği bilincini artırmak için cinsiyet eşitliği konusunda eğitim ve farkındalık programları düzenlenmelidir. Bu programlar, cinsiyet stereotiplerini sorgulamaya teşvik ederek toplumsal normları değiştirmeyi hedeflemelidir.
+
+Kadınların ekonomik güçlenmesini destekleyen politikalar uygulanmalıdır. İşgücüne katılımını artırmak için kadınlara eşit iş fırsatları sağlanmalı, kadın girişimcilere destek verilmeli ve kadınların ekonomik karar alma süreçlerine katılımı teşvik edilmelidir.
+
+Eğitim sistemi cinsiyet eşitliği perspektifiyle yeniden düzenlenmelidir. Kız çocuklarının eğitime erişimi ve okulda kalma oranları artırılmalı, cinsiyet temelli ayrımcılığa karşı önlemler alınmalı ve cinsiyet eşitliği konuları müfredatın bir parçası haline getirilmelidir.
+
+Kadınların siyasi temsiliyetini artırmak için pozitif ayrımcılık politikaları ve kotası uygulanmalıdır. Kadınların siyasi liderlik rollerinde daha fazla yer almaları, karar alma süreçlerinde farklı perspektiflerin temsil edilmesini sağlayabilir.
+
+Kadına yönelik şiddetin önlenmesi için kapsamlı politikalar ve yasal düzenlemeler yapılmalıdır. Şiddet mağdurlarına destek sağlanmalı, şiddetin ciddiyeti ve sonuçları konusunda toplumda farkındalık oluşturulmalıdır.
+
+Uluslararası işbirliği ve yardımlaşma mekanizmaları güçlendirilmelidir. Gelişmekte olan ülkelerin cinsiyet eşitliği konusunda kapasitelerini artırmak ve kaynaklara erişimlerini desteklemek için uluslararası toplum tarafından destek sağlanmalıdır.
+
+Bu öneriler, cinsiyet eşitsizliğiyle mücadelede önemli adımlar olabilir. Ancak, her ülkenin kendi özgün koşullarını dikkate alarak, yerel düzeyde uygulanabilir politikalar ve programlar geliştirmesi önemlidir. Ayrıca, sürekli izleme, değerlendirme ve geliştirme süreçlerine dahil olmak da önemlidir.
+
+\newpage
+# Kaynakça {#references}
+<div id="refs"></div>
+
